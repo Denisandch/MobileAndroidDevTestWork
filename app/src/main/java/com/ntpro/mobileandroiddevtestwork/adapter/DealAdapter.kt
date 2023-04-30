@@ -1,6 +1,7 @@
 package com.ntpro.mobileandroiddevtestwork.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,10 +32,13 @@ class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(deal: Deal?) {
         deal?.let {
-            dealBinding.id.text = deal.id.toString()
-            dealBinding.name.text = deal.instrumentName
+            with(dealBinding) {
+                textItemName.text = deal.instrumentName
+                textItemAmount.text = deal.amount.toString()
+                textItemPrice.text = deal.price.toString()
+                textItemTime.text = deal.timeStamp
+            }
         }
-
     }
 }
 

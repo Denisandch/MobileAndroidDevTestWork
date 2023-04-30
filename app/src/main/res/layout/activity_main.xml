@@ -1,18 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <Spinner
+                tools:listitem="@layout/support_simple_spinner_dropdown_item"
+                android:layout_weight="1"
+                android:id="@+id/spinner_filter_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <CheckBox
+                android:id="@+id/checkbox_is_ask"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="По возрастанию"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_refresh"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawableEnd="@drawable/ic_refresh"
+            android:text="Обновить" />
+
+
+    </LinearLayout>
+
     <TableRow
+        android:elevation="8dp"
         android:id="@+id/tableRow"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/asc">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,48 +86,11 @@
         </LinearLayout>
     </TableRow>
 
-    <Button
-        android:id="@+id/asc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="asc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/gen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="gen"
-        app:layout_constraintEnd_toStartOf="@+id/desc"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add"
-        app:layout_constraintEnd_toStartOf="@+id/gen"
-        app:layout_constraintStart_toEndOf="@+id/asc"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="desc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_recycler"
+        android:id="@+id/deal_recycler"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow"
         tools:listitem="@layout/one_deal_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

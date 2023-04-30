@@ -2,6 +2,7 @@ package com.ntpro.mobileandroiddevtestwork
 
 import android.os.Handler
 import android.os.Looper
+import com.ntpro.mobileandroiddevtestwork.room.DealDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -36,6 +37,7 @@ class Server {
         processScope.launch {
             var deals = mutableListOf<Deal>()
             val dealsCount = (1_000_000L..1_001_000L).random()
+
             val dealsCountInPacket = 1_000
             var j = 0
 
