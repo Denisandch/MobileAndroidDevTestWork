@@ -19,11 +19,6 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
     }
 
     private val dealDao: DealDao = DealDataBase.getDatabase(context).dealDao()
-    //TODO comment about maxID
-    /**
-    *
-    *
-    */
     private var maxID: Long = 0
     override fun getDeals(): Flow<PagingData<Deal>> {
         return Pager<Int, Deal>(

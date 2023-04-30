@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ntpro.mobileandroiddevtestwork.Deal
 import com.ntpro.mobileandroiddevtestwork.R
 import com.ntpro.mobileandroiddevtestwork.databinding.OneDealItemBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DealAdapter(
     context: Context
@@ -43,7 +45,8 @@ class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     )
                 )
                 textItemPrice.text = deal.price.toString()
-                textItemTime.text = deal.timeStamp
+                val newFormat = SimpleDateFormat("EEE MMM dd yyyy\nHH:mm:ss", Locale.ENGLISH)
+                textItemTime.text = newFormat.format(deal.timeStamp).toString()
             }
         }
     }

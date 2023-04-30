@@ -2,7 +2,6 @@ package com.ntpro.mobileandroiddevtestwork
 
 import android.os.Handler
 import android.os.Looper
-import com.ntpro.mobileandroiddevtestwork.room.DealDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

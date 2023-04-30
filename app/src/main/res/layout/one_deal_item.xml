@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="64dp"
     android:layout_marginTop="-2dp">
 
     <LinearLayout
@@ -19,8 +20,8 @@
             android:layout_weight="1"
             android:background="@drawable/shape_rectangle_stroke"
             android:gravity="center"
-            android:textSize="32sp"
-            tools:text="1" />
+            android:textSize="16sp"
+            tools:text="Sun Apr 30 2023\n20:02:45" />
 
         <TextView
             android:id="@+id/text_item_name"
@@ -28,8 +29,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="32sp"
-            tools:text="Deal" />
+            android:textSize="16sp"
+            tools:text="USD/AMD_SPOT" />
 
         <TextView
             android:id="@+id/text_item_price"
@@ -38,17 +39,20 @@
             android:layout_weight="1"
             android:background="@drawable/shape_rectangle_stroke"
             android:gravity="center"
-            android:textSize="32sp"
-            tools:text="1" />
+            android:textSize="24sp"
+            tools:text="55.55" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_item_amount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.9"
             android:gravity="center"
-            android:textSize="32sp"
-            tools:text="Deal" />
+            android:maxLines="1"
+            android:textSize="24sp"
+            app:autoSizeMaxTextSize="24sp"
+            app:autoSizeTextType="uniform"
+            tools:text="8333888" />
 
     </LinearLayout>
 </TableRow>
