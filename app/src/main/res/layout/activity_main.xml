@@ -21,40 +21,56 @@
             android:orientation="vertical">
 
             <Spinner
-                tools:listitem="@layout/support_simple_spinner_dropdown_item"
-                android:layout_weight="1"
                 android:id="@+id/spinner_filter_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:minWidth="160dp"
+                tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
             <CheckBox
                 android:id="@+id/checkbox_is_ask"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="По возрастанию"/>
+                android:layout_weight="1"
+                android:text="По возрастанию" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_refresh"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:textAllCaps="false"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:drawableEnd="@drawable/ic_refresh"
-            android:text="Обновить" />
+            android:orientation="vertical">
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/text_new_deals"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:text="Найдено новых сделок: 1000000"/>
+
+            <Button
+                android:id="@+id/button_refresh"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:drawableEnd="@drawable/ic_refresh"
+                android:text="Обновить"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+        </LinearLayout>
+
 
 
     </LinearLayout>
 
     <TableRow
-        android:elevation="8dp"
         android:id="@+id/tableRow"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

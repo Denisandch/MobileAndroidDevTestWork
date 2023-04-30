@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,12 @@ class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             with(dealBinding) {
                 textItemName.text = deal.instrumentName
                 textItemAmount.text = deal.amount.toString()
+                textItemPrice.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        if (deal.side == Deal.Side.SELL) R.color.red else R.color.green
+                    )
+                )
                 textItemPrice.text = deal.price.toString()
                 textItemTime.text = deal.timeStamp
             }

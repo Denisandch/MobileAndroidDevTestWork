@@ -20,7 +20,7 @@ class DealPagingSource(
         val pageSize: Int = params.loadSize.coerceAtMost(30)
 
         return try {
-            val response = dealDao.getAllDealsByDateDesc(pageSize, page * pageSize).map { it.toDeal() }
+            val response = dealDao.getAllDealsByDateDesc(pageSize, page * pageSize, 3000).map { it.toDeal() }
             val nextKey = if (response.size < pageSize) null else page + 1
             val prevKey = if (page == 0) null else page - 1
 

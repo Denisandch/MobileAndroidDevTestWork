@@ -1,6 +1,7 @@
 package com.ntpro.mobileandroiddevtestwork
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
@@ -20,15 +21,23 @@ class AppViewModel(
 
     private val filter = MutableLiveData("")
 
+    private val _countOfNewDeals = MutableLiveData<Int>(0)
+    val countOfNewDeals: LiveData<Int> = _countOfNewDeals
+
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val deals: Flow<PagingData<Deal>> =
-        filter.asFlow().flatMapLatest { dealRepository.getDeals() }.cachedIn(viewModelScope)
+        filter.asFlow().flatMapLatest {
+            _countOfNewDeals.value = 0
+            dealRepository.getDeals()
+        }.cachedIn(viewModelScope)
 
 
     init {
-        Server().subscribeToDeals {
+        Server().subscribeToDeals { dealsList ->
+            _countOfNewDeals.value = _countOfNewDeals.value?.plus(dealsList.size)
             viewModelScope.launch {
-                dealRepository.addNewDeals(it.map { it.toDeal() })
+                dealRepository.addNewDeals(dealsList.map { it.toDeal() })
             }
         }
     }

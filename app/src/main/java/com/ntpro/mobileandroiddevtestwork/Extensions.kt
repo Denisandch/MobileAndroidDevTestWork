@@ -1,14 +1,20 @@
 package com.ntpro.mobileandroiddevtestwork
 
 import com.ntpro.mobileandroiddevtestwork.room.DealDB
+import kotlin.math.roundToInt
 
 fun Server.Deal.toDeal(): Deal {
     return Deal(
-        id, timeStamp.toString(), instrumentName, price, amount, side.toServerDealSide()
+        id = id,
+        timeStamp = timeStamp.toString(),
+        instrumentName = instrumentName,
+        price = (price * 100.0).roundToInt() / 100.0,
+        amount = amount.roundToInt(),
+        side = side.toDealSide()
     ) //TODO FIX Date
 }
 
-fun Server.Deal.Side.toServerDealSide(): Deal.Side {
+fun Server.Deal.Side.toDealSide(): Deal.Side {
     return when (this.name) {
         DealDB.Side.SELL.name -> Deal.Side.SELL
         else -> Deal.Side.BUY
@@ -27,10 +33,10 @@ fun Deal.Side.toDealDBSide(): DealDB.Side {
 }
 
 fun DealDB.toDeal(): Deal {
-    return Deal(id, timeStamp, instrumentName, price, amount, side.toServerDealSide()) //TODO FIX Date
+    return Deal(id, timeStamp, instrumentName, price, amount, side.toDealSide()) //TODO FIX Date
 }
 
-fun DealDB.Side.toServerDealSide(): Deal.Side {
+fun DealDB.Side.toDealSide(): Deal.Side {
     return when (this.name) {
         DealDB.Side.SELL.name -> Deal.Side.SELL
         else -> Deal.Side.BUY

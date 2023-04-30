@@ -7,7 +7,7 @@ data class Deal(
     val timeStamp: String, //TODO Date
     val instrumentName: String,
     val price: Double,
-    val amount: Double,
+    val amount: Int,
     val side: Side,
 ) {
     enum class Side {

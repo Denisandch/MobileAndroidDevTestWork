@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MobileAndroidDevTestWork</string>
+    <string name="data_updated">Данные обновлены!</string>
+    <string name="new_deals">Найдены новые сделки: %1$d</string>
 </resources>

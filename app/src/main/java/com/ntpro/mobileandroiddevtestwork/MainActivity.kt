@@ -3,8 +3,10 @@ package com.ntpro.mobileandroiddevtestwork
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.ntpro.mobileandroiddevtestwork.adapter.DealAdapter
 import com.ntpro.mobileandroiddevtestwork.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -25,12 +27,10 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
-        applicationContext.deleteDatabase("deal_database")
-
         dealAdapter = DealAdapter(this)
         spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerAdapter.addAll(Column.values().toList().map { it.columnName})
+        spinnerAdapter.addAll(Column.values().toList().map { it.columnName })
 
         mainBinding.dealRecycler.adapter = dealAdapter
         mainBinding.spinnerFilterList.adapter = spinnerAdapter
@@ -46,6 +46,21 @@ class MainActivity : AppCompatActivity() {
             val isAsc = mainBinding.checkboxIsAsk.isChecked
 
             viewModel.setFilter(filter, isAsc)
+
+            Snackbar
+                .make(
+                    mainBinding.root,
+                    resources.getString(R.string.data_updated),
+                    Snackbar.LENGTH_SHORT
+                )
+                .show()
+
+            mainBinding.dealRecycler.scrollToPosition(0)
+        }
+
+        viewModel.countOfNewDeals.observe(this) {
+            mainBinding.textNewDeals.visibility = if (it != 0) View.VISIBLE else View.INVISIBLE
+            mainBinding.textNewDeals.text = resources.getString(R.string.new_deals, it)
         }
     }
 }
