@@ -2,10 +2,8 @@ package com.ntpro.mobileandroiddevtestwork
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.ntpro.mobileandroiddevtestwork.adapter.DealAdapter
 import com.ntpro.mobileandroiddevtestwork.databinding.ActivityMainBinding

@@ -1,9 +1,7 @@
 package com.ntpro.mobileandroiddevtestwork
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-
 import com.ntpro.mobileandroiddevtestwork.room.DealDao
 
 class DealPagingSource(

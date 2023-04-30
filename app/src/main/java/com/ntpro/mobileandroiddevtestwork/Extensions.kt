@@ -1,7 +1,6 @@
 package com.ntpro.mobileandroiddevtestwork
 
 import com.ntpro.mobileandroiddevtestwork.room.DealDB
-import java.sql.Timestamp
 import java.util.*
 import kotlin.math.roundToInt
 

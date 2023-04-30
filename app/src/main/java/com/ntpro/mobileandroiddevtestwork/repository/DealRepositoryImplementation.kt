@@ -20,7 +20,11 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
     override fun getDeals(filter: Column, isAsc: Boolean): Flow<PagingData<Deal>> {
 
         return Pager<Int, Deal>(
-            PagingConfig(pageSize = 50, initialLoadSize = 200),
+            PagingConfig (
+                pageSize = 50,
+                prefetchDistance = 100,
+                initialLoadSize = 250
+            ),
         ) {
             DealPagingSource(dealDao, column = filter, direction = isAsc, maxID = maxID)
         }.flow

@@ -3,7 +3,6 @@ package com.ntpro.mobileandroiddevtestwork.room
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.sql.Timestamp
 
 @Entity(tableName = "deal", indices = [Index(value = ["id"])])
 data class DealDB(

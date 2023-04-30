@@ -1,6 +1,5 @@
 package com.ntpro.mobileandroiddevtestwork
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,13 +8,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.ntpro.mobileandroiddevtestwork.repository.DealRepository
-import com.ntpro.mobileandroiddevtestwork.room.DealDB
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
-val DEFAULT_FILTER = Column.INSTRUMENT_NAME
 class AppViewModel(
     private val dealRepository: DealRepository
 ) : ViewModel() {
@@ -33,7 +30,6 @@ class AppViewModel(
                 dealRepository.addNewDeals(dealsList.map { it.toDeal() })
             }
         }
-        filter.value = DEFAULT_FILTER
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

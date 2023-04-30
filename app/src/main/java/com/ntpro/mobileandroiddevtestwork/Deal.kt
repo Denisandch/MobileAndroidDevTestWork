@@ -1,6 +1,5 @@
 package com.ntpro.mobileandroiddevtestwork
 
-import java.sql.Timestamp
 import java.util.*
 
 data class Deal(
