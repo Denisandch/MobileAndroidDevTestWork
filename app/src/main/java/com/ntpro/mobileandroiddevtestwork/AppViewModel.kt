@@ -15,23 +15,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
+val DEFAULT_FILTER = Column.INSTRUMENT_NAME
 class AppViewModel(
     private val dealRepository: DealRepository
 ) : ViewModel() {
 
-    private val filter = MutableLiveData("")
+    private val filter = MutableLiveData<Column>()
+    private var isAsc = false
 
     private val _countOfNewDeals = MutableLiveData<Int>(0)
     val countOfNewDeals: LiveData<Int> = _countOfNewDeals
-
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    val deals: Flow<PagingData<Deal>> =
-        filter.asFlow().flatMapLatest {
-            _countOfNewDeals.value = 0
-            dealRepository.getDeals()
-        }.cachedIn(viewModelScope)
-
 
     init {
         Server().subscribeToDeals { dealsList ->
@@ -40,9 +33,18 @@ class AppViewModel(
                 dealRepository.addNewDeals(dealsList.map { it.toDeal() })
             }
         }
+        filter.value = DEFAULT_FILTER
     }
 
-    fun setFilter(filter: String, isAsc: Boolean) {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val deals: Flow<PagingData<Deal>> =
+        filter.asFlow().flatMapLatest {
+            _countOfNewDeals.value = 0
+            dealRepository.getDeals(filter = filter.value!!, isAsc = this.isAsc)
+        }.cachedIn(viewModelScope)
+
+    fun setFilter(filter: Column, isAsc: Boolean) {
+        this.isAsc = isAsc
         this.filter.value = filter
     }
 

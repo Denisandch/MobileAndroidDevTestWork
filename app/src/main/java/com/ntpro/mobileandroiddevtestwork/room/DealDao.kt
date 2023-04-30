@@ -24,6 +24,10 @@ interface DealDao {
     suspend fun getAllDealsByAmountAsc(limit: Int, offset: Int, maxID: Long): List<DealDB>
     @Query("SELECT * FROM deal WHERE id <= :maxID ORDER BY amount DESC LIMIT :limit OFFSET :offset")
     suspend fun getAllDealsByAmountDesc(limit: Int, offset: Int, maxID: Long): List<DealDB>
+    @Query("SELECT * FROM deal WHERE id <= :maxID ORDER BY side ASC LIMIT :limit OFFSET :offset")
+    suspend fun getAllDealsBySideAsc(limit: Int, offset: Int, maxID: Long): List<DealDB>
+    @Query("SELECT * FROM deal WHERE id <= :maxID ORDER BY side DESC LIMIT :limit OFFSET :offset")
+    suspend fun getAllDealsBySideDesc(limit: Int, offset: Int, maxID: Long): List<DealDB>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addListDeal(deals: List<DealDB>)

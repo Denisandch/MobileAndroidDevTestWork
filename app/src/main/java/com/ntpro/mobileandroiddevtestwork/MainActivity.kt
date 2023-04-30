@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             val filter = mainBinding.spinnerFilterList.selectedItem.toString()
             val isAsc = mainBinding.checkboxIsAsk.isChecked
 
-            viewModel.setFilter(filter, isAsc)
+            viewModel.setFilter(Column.fromColumnName(filter)!!, isAsc)
 
             Snackbar
                 .make(

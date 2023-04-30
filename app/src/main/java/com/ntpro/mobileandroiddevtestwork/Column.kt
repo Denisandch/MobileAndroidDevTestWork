@@ -5,5 +5,11 @@ enum class Column(val columnName: String) {
     INSTRUMENT_NAME("Название инструмента"),
     PRICE("Цена сделки"),
     AMOUNT("Объем сделки"),
-    SIDE("Тип сделки")
+    SIDE("Тип сделки");
+
+    companion object {
+        fun fromColumnName(columnName: String): Column? {
+            return values().find { it.columnName == columnName }
+        }
+    }
 }

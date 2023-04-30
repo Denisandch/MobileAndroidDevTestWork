@@ -4,12 +4,9 @@ import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.ntpro.mobileandroiddevtestwork.Deal
-import com.ntpro.mobileandroiddevtestwork.DealPagingSource
-import com.ntpro.mobileandroiddevtestwork.Server
+import com.ntpro.mobileandroiddevtestwork.*
 import com.ntpro.mobileandroiddevtestwork.room.DealDao
 import com.ntpro.mobileandroiddevtestwork.room.DealDataBase
-import com.ntpro.mobileandroiddevtestwork.toDealDB
 import kotlinx.coroutines.flow.Flow
 
 class DealRepositoryImplementation(context: Context) : DealRepository {
@@ -20,11 +17,12 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
 
     private val dealDao: DealDao = DealDataBase.getDatabase(context).dealDao()
     private var maxID: Long = 0
-    override fun getDeals(): Flow<PagingData<Deal>> {
+    override fun getDeals(filter: Column, isAsc: Boolean): Flow<PagingData<Deal>> {
+
         return Pager<Int, Deal>(
-            PagingConfig(pageSize = 30, initialLoadSize = 30),
+            PagingConfig(pageSize = 50, initialLoadSize = 200),
         ) {
-            DealPagingSource(dealDao)
+            DealPagingSource(dealDao, column = filter, direction = isAsc, maxID = maxID)
         }.flow
     }
 
