@@ -25,9 +25,8 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
 
         return Pager<Int, Deal>(
             PagingConfig(
-                pageSize = 50,
-                prefetchDistance = 100,
-                initialLoadSize = 250
+                pageSize = 500,
+                prefetchDistance = 500
             ),
         ) {
             DealPagingSource(dealsLoader)

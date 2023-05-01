@@ -18,7 +18,7 @@ class DealPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Deal> {
         val page: Int = params.key ?: 0
-        val pageSize: Int = params.loadSize.coerceAtMost(50)
+        val pageSize: Int = params.loadSize.coerceAtMost(500)
 
         return try {
             val response = dealsLoader.invoke(page, pageSize)
