@@ -7,8 +7,7 @@ import com.ntpro.mobileandroiddevtestwork.repository.DealRepository
 class AddDataToDBUseCase(
     private val repository: DealRepository
 ) {
-    suspend fun addNewDeals(deals: List<Server.Deal>): Int {
+    suspend fun addNewDeals(deals: List<Server.Deal>) {
         repository.addNewDeals(deals)
-        return deals.size - 1
     }
 }

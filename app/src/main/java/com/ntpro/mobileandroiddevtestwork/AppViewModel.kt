@@ -21,7 +21,11 @@ class AppViewModel(
 
     private val filter = MutableLiveData<Column>()
     private var isAsc = false
-    private var maxID: Long = 0
+
+    /**
+     * -1 because in Server.Deal id starts with 0 when maxID depend of count of deals
+     */
+    private var maxID: Long = -1
 
     private val _countOfNewDeals = MutableLiveData<Int>(0)
     val countOfNewDeals: LiveData<Int> = _countOfNewDeals
@@ -30,7 +34,8 @@ class AppViewModel(
         Server().subscribeToDeals { dealsList ->
             _countOfNewDeals.value = _countOfNewDeals.value?.plus(dealsList.size)
             viewModelScope.launch {
-                maxID += addDealsToDBUseCase.addNewDeals(dealsList)
+                addDealsToDBUseCase.addNewDeals(dealsList)
+                maxID += dealsList.size
             }
         }
     }
