@@ -16,8 +16,7 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
     }
 
     private val dealDao: DealDao = DealDataBase.getDatabase(context).dealDao()
-    private var maxID: Long = 0
-    override fun getDeals(filter: Column, isAsc: Boolean): Flow<PagingData<Deal>> {
+    override fun getDeals(filter: Column, isAsc: Boolean, maxID: Long): Flow<PagingData<Deal>> {
 
         return Pager<Int, Deal>(
             PagingConfig (
@@ -30,8 +29,7 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
         }.flow
     }
 
-    override suspend fun addNewDeals(deals: List<Deal>) {
-        maxID += deals.size - 1
+    override suspend fun addNewDeals(deals: List<Server.Deal>) {
         dealDao.addListDeal(deals.map { it.toDealDB() })
     }
 }

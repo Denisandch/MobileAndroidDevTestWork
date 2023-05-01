@@ -4,37 +4,33 @@ import com.ntpro.mobileandroiddevtestwork.room.DealDB
 import java.util.*
 import kotlin.math.roundToInt
 
-fun Server.Deal.toDeal(): Deal {
-    return Deal(
+fun Server.Deal.toDealDB(): DealDB {
+    return DealDB(
         id = id,
-        timeStamp = timeStamp,
+        timeStamp = timeStamp.time,
         instrumentName = instrumentName,
         price = (price * 100.0).roundToInt() / 100.0,
         amount = amount.roundToInt(),
-        side = side.toDealSide()
+        side = side.toDealDBSide()
     )
 }
 
-fun Server.Deal.Side.toDealSide(): Deal.Side {
+fun Server.Deal.Side.toDealDBSide(): DealDB.Side {
     return when (this.name) {
-        DealDB.Side.SELL.name -> Deal.Side.SELL
-        else -> Deal.Side.BUY
-    }
-}
-
-fun Deal.toDealDB(): DealDB {
-    return DealDB(id, timeStamp.time, instrumentName, price, amount, side.toDealDBSide())
-}
-
-fun Deal.Side.toDealDBSide(): DealDB.Side {
-    return when (this.name) {
-        Server.Deal.Side.SELL.name -> DealDB.Side.SELL
+        DealDB.Side.SELL.name -> DealDB.Side.SELL
         else -> DealDB.Side.BUY
     }
 }
 
 fun DealDB.toDeal(): Deal {
-    return Deal(id, Date(timeStamp), instrumentName, price, amount, side.toDealSide())
+    return Deal(
+        id = id,
+        timeStamp = Date(timeStamp),
+        instrumentName = instrumentName,
+        price = price,
+        amount = amount,
+        side = side.toDealSide()
+    )
 }
 
 fun DealDB.Side.toDealSide(): Deal.Side {
