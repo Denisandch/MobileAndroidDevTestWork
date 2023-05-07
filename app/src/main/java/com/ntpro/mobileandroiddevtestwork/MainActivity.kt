@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         dealAdapter = DealAdapter(this)
         spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerAdapter.addAll(Column.values().toList().map { it.columnName })
+        spinnerAdapter.addAll(Column.values().toList().map { it.columnNameUI })
 
         mainBinding.dealRecycler.adapter = dealAdapter
         mainBinding.spinnerFilterList.adapter = spinnerAdapter
