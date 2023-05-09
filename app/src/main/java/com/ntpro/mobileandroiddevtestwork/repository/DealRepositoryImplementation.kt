@@ -36,6 +36,7 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
     override suspend fun addNewDeals(deals: List<Server.Deal>) {
         dealDao.addListDeal(deals.map { it.toDealDB() })
     }
+
     private suspend fun selectQuery(
         page: Int,
         pageSize: Int,
@@ -44,7 +45,7 @@ class DealRepositoryImplementation(context: Context) : DealRepository {
         maxID: Long
     ): List<Deal> {
 
-        return if(direction) {
+        return if (direction) {
             dealDao.getAllDealsAsc(pageSize, page * pageSize, maxID, column.columnNameDB)
         } else {
             dealDao.getAllDealsDesc(pageSize, page * pageSize, maxID, column.columnNameDB)

@@ -2,8 +2,6 @@ package com.ntpro.mobileandroiddevtestwork
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.ntpro.mobileandroiddevtestwork.room.DealDB
-import com.ntpro.mobileandroiddevtestwork.room.DealDao
 
 typealias DealsLoader = suspend (page: Int, pageSize: Int) -> List<Deal>
 

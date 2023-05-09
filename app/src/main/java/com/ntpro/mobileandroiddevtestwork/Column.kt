@@ -7,9 +7,6 @@ enum class Column(val columnNameUI: String, val columnNameDB: String) {
     AMOUNT("Объем сделки", "amount"),
     SIDE("Тип сделки", "side");
 
-    fun test() {
-        
-    }
     companion object {
         fun fromColumnName(columnName: String): Column? {
             return values().find { it.columnNameUI == columnName }
